@@ -20,7 +20,7 @@ module.exports = {
       name: 'Host',
       description: "Address of remote host to run command on",
       required: true,
-      type: 'textarea'
+      type: 'text'
     },
     port: {
       name: 'Port',
