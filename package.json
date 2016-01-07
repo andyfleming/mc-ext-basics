@@ -8,7 +8,9 @@
   },
   "author": "",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "ssh-exec": "^1.4.0"
+  },
   "devDependencies": {
     "mc-extension-validator": "*",
     "tape": "^4.2.2",
