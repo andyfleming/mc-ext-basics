@@ -9,7 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "ssh-exec": "^1.4.0"
+    "ssh-exec": "git@github.com:andyfleming/ssh-exec.git#984d2ec"
   },
   "devDependencies": {
     "mc-extension-validator": "*",
