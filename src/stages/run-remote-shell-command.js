@@ -61,7 +61,7 @@ module.exports = {
       //password: ''
     }
 
-    stage.log('Running remote shell command')
+    stage.log('mc.basics.logs.snippet', 'Running remote shell command', [commands])
 
     sshExec(commands, options, (err, stdout, stderr) => {
       let exitCode = (err !== null) ? err.code : 0

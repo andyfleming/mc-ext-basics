@@ -46,7 +46,7 @@ module.exports = {
     let commands = stage.option('commands')
     let timeout = stage.option('timeout') * 1000 // convert seconds to milliseconds
 
-    stage.log('Running shell command')
+    stage.log('mc.basics.logs.snippet', 'Running shell command', [commands])
 
     exec(commands, {
     	timeout: timeout,
