@@ -5,6 +5,7 @@ const MAX_BUFFER = 15000 * 1024
 
 let exec = require('child_process').exec
 let shellCommandLog = require('../logs/shell-command')
+let fs = require('fs')
 
 module.exports = {
 
@@ -16,16 +17,23 @@ module.exports = {
   options: {
     commands: {
       name: 'Command(s)',
-      description: "Command(s) to run",
+      description: 'Command(s) to run',
       required: true,
       type: 'textarea'
     },
     timeout: {
       name: 'Timeout',
-      description: "Timeout (in seconds)",
+      description: 'Timeout (in seconds)',
       required: true,
       type: 'text',
       default: 600 // 10 minutes
+    },
+    directory: {
+      name: 'Directory',
+      description: 'Path to execute command from',
+      required: true,
+      type: 'text',
+      default: '{[ mc.workspace_path ]}'
     }
   },
 
@@ -45,12 +53,20 @@ module.exports = {
 
     let commands = stage.option('commands')
     let timeout = stage.option('timeout') * 1000 // convert seconds to milliseconds
+    let directory = stage.option('directory')
+
+    if (!fs.existsSync(directory)) {
+      stage.log('mc.basics.logs.snippet', 'Command cancelled. Directory not found.', ['Path:\n' + directory])
+      stage.fail()
+      return
+    }
 
     stage.log('mc.basics.logs.snippet', 'Running shell command', [commands])
 
     exec(commands, {
     	timeout: timeout,
-    	maxBuffer: MAX_BUFFER
+    	maxBuffer: MAX_BUFFER,
+      cwd: directory
     }, function (err, stdout, stderr) {
 
       let exitCode = (err !== null) ? err.code : 0
