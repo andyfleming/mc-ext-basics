@@ -16,13 +16,13 @@ module.exports = {
   options: {
     commands: {
       name: 'Command(s)',
-      description: "Command(s) to run",
+      description: 'Command(s) to run',
       required: true,
       type: 'textarea'
     },
     timeout: {
       name: 'Timeout',
-      description: "Timeout (in seconds)",
+      description: 'Timeout (in seconds)',
       required: true,
       type: 'text',
       default: 600 // 10 minutes
