@@ -87,11 +87,11 @@ module.exports = {
         }
 
         // Log error to logs
-        console.log('Remote shell command error: Unexpected')
+        console.log(errDescription)
         console.dir(err)
 
         // Log error for user
-        stage.log('mc.basics.logs.snippet', 'Could not connect to remote host', [details])
+        stage.log('mc.basics.logs.snippet', errDescription, [details])
 
         // Fail the stage and don't continue
         stage.fail()
