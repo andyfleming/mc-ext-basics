@@ -82,7 +82,7 @@ module.exports = {
 
           default:
             errDescription += 'unexpected error'
-            details += '\n' + JSON.stringify(err)
+            details += '\n' + JSON.stringify(err, null, 2)
 
         }
 
