@@ -66,14 +66,34 @@ module.exports = {
     sshExec(commands, options, (err, stdout, stderr) => {
 
       // If there is a connection error, log accordingly and fail the stage
-      if (err !== null && typeof err.code === 'object' && err.code.code === 'ECONNREFUSED') {
-        console.log('Remote shell command could not connect to host')
+      if (err !== null && typeof err.code === 'object') {
 
+        let errDescription = 'Remote shell command error: '
         let details = 'host: ' + options.host
           + '\nuser: ' + options.user
           + '\nport: ' + options.port
 
+        // If we recognize the error, describe it
+        switch (err.code.code) {
+
+          case 'ECONNREFUSED':
+            errDescription += 'could not connect to host'
+            break
+
+          default:
+            errDescription += 'unexpected error'
+            details += '\n' + JSON.stringify(err)
+
+        }
+
+        // Log error to logs
+        console.log('Remote shell command error: Unexpected')
+        console.dir(err)
+
+        // Log error for user
         stage.log('mc.basics.logs.snippet', 'Could not connect to remote host', [details])
+
+        // Fail the stage and don't continue
         stage.fail()
         return
       }
