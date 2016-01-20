@@ -21,6 +21,7 @@ module.exports = {
     }
 
     let replacementDictionary = {
+      '[0;33m': '<span class="yellow">',
       '[1;30m': '<span class="black">',
       '[1;31m': '<span class="red">',
       '[0;32m': '<span class="bright-green">',
@@ -30,6 +31,7 @@ module.exports = {
       '[1;35m': '<span class="purple">',
       '[1;36m': '<span class="cyan">',
       '[1;37m': '<span class="white">',
+      '[0;0m': '</span>',
       '[0m'  : '</span>',
       '[m'   : '</span>'
     }
